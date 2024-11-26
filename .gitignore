@@ -1,0 +1,78 @@
+
+# dotenv environment variable files
+backend/.env
+backend/.env.development.local
+backend/.env.test.local
+backend/.env.production.local
+backend/.env.local
+
+# TypeScript cache
+backend/*.tsbuildinfo
+
+# Optional npm cache directory
+backend/.npm
+
+# Optional eslint cache
+backend/.eslintcache
+
+# Optional stylelint cache
+backend/.stylelintcache
+
+# Dependency directories
+backend/node_modules/
+backend/package-lock.json
+backend/jspm_packages/
+
+# android
+*.iml
+android/.gradle/
+android/local.properties
+android/.idea/caches
+android/.idea/deploymentTargetSelector.xml
+android/.idea/libraries
+android/.idea/modules.xml
+android/.idea/workspace.xml
+android/.idea/navEditor.xml
+android/.idea/assetWizardSettings.xml
+android/.DS_Store
+android/build/
+android/captures
+android/.externalNativeBuild
+android/.cxx
+android/local.properties
+android/.idea/misc.xml
+
+# Gradle files
+android/.gradle/
+android/build/
+
+# Local configuration file (sdk path, etc)
+android/local.properties
+
+# Log/OS Files
+android/*.log
+
+# Android Studio generated files and folders
+android/captures/
+android/.externalNativeBuild/
+android/.cxx/
+*.apk
+android/output.json
+
+# IntelliJ
+android/*.iml
+android/.idea/
+android/misc.xml
+android/deploymentTargetDropDown.xml
+android/render.experimental.xml
+
+# Keystore files
+android/*.jks
+android/*.keystore
+
+# Google Services (e.g. APIs or Firebase)
+android/google-services.json
+
+# Android Profiling
+android/*.hprof
+
