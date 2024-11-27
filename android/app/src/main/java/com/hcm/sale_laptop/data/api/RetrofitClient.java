@@ -16,7 +16,7 @@ public class RetrofitClient {
     // local host for simulator
     // public static final String BASE_URL = "http://10.0.2.2:3000/";
 
-    public static final String BASE_URL = "https://89e3-2405-4802-90f8-4ff0-41f-fecc-6fa8-474f.ngrok-free.app/";
+    public static final String BASE_URL = "https://1c4b-171-252-155-71.ngrok-free.app/";
 
     private static Retrofit retrofit;
 

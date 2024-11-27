@@ -11,9 +11,11 @@ import com.hcm.sale_laptop.data.model.network.response.OrderResponse;
 import com.hcm.sale_laptop.data.model.network.response.ProductResponse;
 import com.hcm.sale_laptop.data.model.network.response.ProductSaleResponse;
 import com.hcm.sale_laptop.data.model.network.response.SignupResponse;
+import com.hcm.sale_laptop.data.model.other.OrderListPostModel;
 import com.hcm.sale_laptop.data.model.other.OrderSoldModel;
 import com.hcm.sale_laptop.data.model.other.OrderStateModel;
 import com.hcm.sale_laptop.data.model.other.PasswordRequestModel;
+import com.hcm.sale_laptop.data.model.other.ResetPasswordModel;
 import com.hcm.sale_laptop.data.model.other.ReviewModel;
 
 import java.util.List;
@@ -85,5 +87,12 @@ public interface ApiService {
 
     @POST("re-password")
     Call<Void> sendPassword(@Body PasswordRequestModel passwordRequestModel);
+
+    @POST("reset")
+    Call<Void> resetPassword(@Body ResetPasswordModel resetPasswordModel);
+
+
+    @POST("order/update")
+    Call<Void> sendOptionOrder(@Body OrderListPostModel orderListPostModel);
 
 }

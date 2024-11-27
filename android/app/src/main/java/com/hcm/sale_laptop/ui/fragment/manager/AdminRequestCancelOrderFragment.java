@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import com.hcm.base.BaseFragment;
 import com.hcm.sale_laptop.data.api.ApiService;
 import com.hcm.sale_laptop.data.api.RetrofitClient;
+import com.hcm.sale_laptop.data.model.other.OrderListPostModel;
 import com.hcm.sale_laptop.data.model.other.OrderStateModel;
 import com.hcm.sale_laptop.databinding.FragmentAdminRequestCancelOrderBinding;
 import com.hcm.sale_laptop.ui.adapter.RequestCancelOrderAdapter;
@@ -79,14 +80,37 @@ public class AdminRequestCancelOrderFragment extends BaseFragment<AdminRequestCa
     @Override
     protected void setupAction() {
         setOnClickListener(mBinding.btnConfirmOrder, view -> {
-//            Toast.makeText(getActivity(), "Please enter a password", Toast.LENGTH_SHORT).show();
             this.cancerOder();
         });
 
     }
 
     private void cancerOder() {
-        Toast.makeText(getActivity(), ConstantsList.getOrderStateSelect().toString(), Toast.LENGTH_SHORT).show();
+        this.postCancelOder();
+    }
+
+    private void postCancelOder () {
+        OrderListPostModel orderListPost = new OrderListPostModel(ConstantsList.getOrderStateSelect(), 2);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(RetrofitClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<Void> call = apiService.sendOptionOrder(orderListPost);
+        call.enqueue(new retrofit2.Callback<Void>() {
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    fetchOder();
+                    Toast.makeText(getActivity(), "Succeed to fetch cancel orders", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "Failed to fetch cancel orders", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getActivity(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
