@@ -6,16 +6,19 @@ public class ReviewModel {
     private String productName;
     private String customerName;
     private String reviewText;
+
+    private String avatar;
     private float rating;
 
     // Constructor
-    public ReviewModel(String orderId, String orderDate, String productName, String customerName, String reviewText, float rating) {
+    public ReviewModel(String orderId, String orderDate, String productName, String customerName, String reviewText, float rating, String avatar) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.productName = productName;
         this.customerName = customerName;
         this.reviewText = reviewText;
         this.rating = rating;
+        this.avatar = avatar;
     }
 
     // Getters
@@ -38,6 +41,10 @@ public class ReviewModel {
     public String getReviewText() {
         return reviewText;
     }
+    public String getAvatar() {
+        return avatar;
+    }
+
 
     public float getRating() {
         return rating;

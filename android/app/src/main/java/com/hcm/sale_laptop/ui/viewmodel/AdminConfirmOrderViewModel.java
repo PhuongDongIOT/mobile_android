@@ -46,15 +46,15 @@ public class AdminConfirmOrderViewModel extends BaseViewModel<OrderRepository> {
         addDisposable(disposable);
     }
 
-    public void confirmOrder(CancelOrderRequest request) {
-        final Disposable disposable = mRepository.cancelOrder(request)
-                .subscribeOn(Schedulers.io())
-                .doOnSubscribe(dis -> setLoading(true))
-                .doOnError(error -> setLoading(false))
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::handlerConfirmOrderResponse, throwable -> setErrorMessage(throwable.getMessage()));
-        addDisposable(disposable);
-    }
+            public void confirmOrder(CancelOrderRequest request) {
+                final Disposable disposable = mRepository.cancelOrder(request)
+                        .subscribeOn(Schedulers.io())
+                        .doOnSubscribe(dis -> setLoading(true))
+                        .doOnError(error -> setLoading(false))
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(this::handlerConfirmOrderResponse, throwable -> setErrorMessage(throwable.getMessage()));
+                addDisposable(disposable);
+            }
 
     private void handlerConfirmOrderResponse(BaseResponse<Object> response) {
         setLoading(false);

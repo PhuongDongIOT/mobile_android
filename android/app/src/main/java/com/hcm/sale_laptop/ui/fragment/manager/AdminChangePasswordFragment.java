@@ -43,10 +43,9 @@ public class AdminChangePasswordFragment extends BaseFragment<BaseViewModel<?>, 
     @Override
     protected void setupAction() {
 
-//        setOnClickListener(mBinding.btnBackArrow, view -> onBack());
+        setOnClickListener(mBinding.btnBackArrow, view -> onBack());
         setOnClickListener(mBinding.btnPay, view -> {
             Toast.makeText(getActivity(), "Please enter a password", Toast.LENGTH_SHORT).show();
-//            showDialogWarning();
         });
     }
 

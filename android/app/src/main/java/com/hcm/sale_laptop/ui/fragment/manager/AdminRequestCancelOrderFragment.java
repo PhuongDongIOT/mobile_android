@@ -16,6 +16,8 @@ import com.hcm.sale_laptop.databinding.FragmentAdminRequestCancelOrderBinding;
 import com.hcm.sale_laptop.ui.adapter.RequestCancelOrderAdapter;
 import com.hcm.sale_laptop.ui.viewmodel.AdminRequestCancelOrderViewModel;
 import com.hcm.sale_laptop.utils.AppUtils;
+import com.hcm.sale_laptop.utils.Constants;
+import com.hcm.sale_laptop.utils.ConstantsList;
 
 import java.util.List;
 
@@ -28,19 +30,31 @@ public class AdminRequestCancelOrderFragment extends BaseFragment<AdminRequestCa
 
     private OrderStateModel orderStateModel;
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = FragmentAdminRequestCancelOrderBinding.inflate(inflater, container, false);
         setup();
+        ConstantsList.resetOrderStateSelect();
         return mBinding.getRoot();
+    }
+
+
+    private void onItemClick(OrderStateModel model) {
+        Toast.makeText(getActivity(), "Error: " + model.toString(), Toast.LENGTH_SHORT).show();
+        this.orderStateModel = model.isSelect() ? model : null;
     }
 
     @Override
     protected void setupUI() {
+        this.fetchOder();
+    }
+
+    private void fetchOder () {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(RetrofitClient.BASE_URL + "/")
+                .baseUrl(RetrofitClient.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
@@ -56,7 +70,6 @@ public class AdminRequestCancelOrderFragment extends BaseFragment<AdminRequestCa
                 }
             }
 
-
             public void onFailure(Call<List<OrderStateModel>> call, Throwable t) {
                 Toast.makeText(getActivity(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -65,7 +78,15 @@ public class AdminRequestCancelOrderFragment extends BaseFragment<AdminRequestCa
 
     @Override
     protected void setupAction() {
+        setOnClickListener(mBinding.btnConfirmOrder, view -> {
+//            Toast.makeText(getActivity(), "Please enter a password", Toast.LENGTH_SHORT).show();
+            this.cancerOder();
+        });
 
+    }
+
+    private void cancerOder() {
+        Toast.makeText(getActivity(), ConstantsList.getOrderStateSelect().toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

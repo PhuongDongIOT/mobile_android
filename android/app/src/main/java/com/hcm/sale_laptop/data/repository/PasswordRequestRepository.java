@@ -20,11 +20,10 @@ public class PasswordRequestRepository {
     /**
      * Gửi mật khẩu lên server.
      *
-     * @param password       mật khẩu cần gửi.
+     * @param passwordRequest mật khẩu cần gửi.
      * @param callback       callback để xử lý kết quả trả về.
      */
-    public void sendPassword(String password, ApiCallback callback) {
-        PasswordRequestModel passwordRequest = new PasswordRequestModel(password);
+    public void sendPassword(PasswordRequestModel passwordRequest, ApiCallback callback) {
         Call<Void> call = apiService.sendPassword(passwordRequest);
 
         // Thực hiện gọi API và xử lý phản hồi

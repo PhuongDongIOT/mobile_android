@@ -3,6 +3,7 @@ package com.hcm.sale_laptop.ui.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.hcm.sale_laptop.R;
 import com.hcm.sale_laptop.data.model.other.ReviewModel;
+import com.hcm.sale_laptop.utils.AppUtils;
 
 import java.util.List;
 
@@ -38,6 +40,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         holder.customerName.setText("Tên: " + review.getCustomerName());
         holder.reviewText.setText(review.getReviewText());
         holder.ratingBar.setRating(review.getRating());
+        AppUtils.loadImageUrl( holder.userAvatar, review.getAvatar());
     }
 
     @Override
@@ -50,6 +53,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         TextView orderId, orderDate, productName, customerName, reviewText;
         RatingBar ratingBar;
 
+        ImageView userAvatar;
+
         public ReviewViewHolder(@NonNull View itemView) {
             super(itemView);
             orderId = itemView.findViewById(R.id.orderId);
@@ -58,6 +63,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
             customerName = itemView.findViewById(R.id.customerName);
             reviewText = itemView.findViewById(R.id.reviewText);
             ratingBar = itemView.findViewById(R.id.ratingBar);
+            userAvatar = itemView.findViewById(R.id.userAvatar);
         }
     }
 }

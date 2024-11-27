@@ -45,7 +45,7 @@ public class AdminOrdersSoldFragment extends Fragment {
 
     private void fetchOrders() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(RetrofitClient.BASE_URL + "/")
+                .baseUrl(RetrofitClient.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

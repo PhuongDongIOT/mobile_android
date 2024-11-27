@@ -8,6 +8,7 @@ import com.hcm.base.OnItemClick;
 import com.hcm.sale_laptop.data.model.other.OrderStateModel;
 import com.hcm.sale_laptop.databinding.ItemRequestCancelOrderBinding;
 import com.hcm.sale_laptop.utils.AppUtils;
+import com.hcm.sale_laptop.utils.ConstantsList;
 
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class RequestCancelOrderAdapter extends BaseAdapter<OrderStateModel, Item
         binding.checkbox.setOnClickListener(view -> {
             itemList = this.getItemList();
 
+            ConstantsList.setOrderStateSelect(item.getId());
             for (OrderStateModel model : itemList) {
                 model.setSelect(false);
             }

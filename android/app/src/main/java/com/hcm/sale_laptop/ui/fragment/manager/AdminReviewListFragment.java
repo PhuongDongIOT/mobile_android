@@ -50,7 +50,7 @@ public class AdminReviewListFragment extends Fragment {
     }
     private void fetchReviews() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(RetrofitClient.BASE_URL + "/")
+                .baseUrl(RetrofitClient.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -80,10 +80,10 @@ public interface ApiService {
     @GET("orders/sold")
     Call<List<OrderSoldModel>> getOrdersSold();
 
-    @GET("reviews")
+    @GET("orders/review")
     Call<List<ReviewModel>> getReview();
 
-    @POST("/api/password")
+    @POST("re-password")
     Call<Void> sendPassword(@Body PasswordRequestModel passwordRequestModel);
 
 }

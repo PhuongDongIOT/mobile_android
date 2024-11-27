@@ -4,15 +4,18 @@ public class OrderSoldModel {
     private String id;
     private String title;
     private String price;
-    private int quantity;
+    private String quantity;
+
+    private String picture;
     private String date;
 
-    public OrderSoldModel(String id, String title, String price, int quantity, String date) {
+    public OrderSoldModel(String id, String title, String price, String quantity, String date, String picture) {
         this.id = id;
         this.title = title;
         this.price = price;
         this.quantity = quantity;
         this.date = date;
+        this.picture = picture;
     }
 
     public String getOrderId() {
@@ -27,8 +30,12 @@ public class OrderSoldModel {
         return price;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
+    }
+
+    public String getPicture() {
+        return picture;
     }
 
     public String getDate() {
