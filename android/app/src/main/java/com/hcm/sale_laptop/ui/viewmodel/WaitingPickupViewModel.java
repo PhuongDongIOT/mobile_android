@@ -30,7 +30,7 @@ public class WaitingPickupViewModel extends BaseViewModel<OrderRepository> {
     }
 
     public void getOrderByUser(String id) {
-        final Disposable disposable = mRepository.getOrderByUser(id)
+        final Disposable disposable = mRepository.getOrderPickupByUser(id)
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(dis -> setLoading(true))
                 .doOnError(error -> setLoading(false))

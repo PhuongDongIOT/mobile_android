@@ -22,6 +22,15 @@ public class OrderRepository extends BaseRepository {
         return applySingle(apiService.getOrderByUser(id));
     }
 
+    public Single<OrderResponse> getOrderDeliveryByUser(String id) {
+        return applySingle(apiService.getOrderDeliveryByUser(id, 2));
+    }
+
+    public Single<OrderResponse> getOrderPickupByUser(String id) {
+        return applySingle(apiService.getOrderDeliveryByUser(id, 0));
+    }
+
+
     public Single<BaseResponse<Object>> cancelOrder(CancelOrderRequest request) {
         final String token = Constants.getToken();
         return applySingle(apiService.cancelOrder(token, request.getOrder_id(), request.getReason()));

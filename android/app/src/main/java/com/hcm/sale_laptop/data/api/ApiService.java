@@ -17,6 +17,7 @@ import com.hcm.sale_laptop.data.model.other.OrderStateModel;
 import com.hcm.sale_laptop.data.model.other.PasswordRequestModel;
 import com.hcm.sale_laptop.data.model.other.ResetPasswordModel;
 import com.hcm.sale_laptop.data.model.other.ReviewModel;
+import com.hcm.sale_laptop.data.model.other.UserModel;
 
 import java.util.List;
 
@@ -64,6 +65,9 @@ public interface ApiService {
     @GET(EndPoint.ORDERS_BY_USER)
     Single<OrderResponse> getOrderByUser(@Query("user_id") String id);
 
+    @GET(EndPoint.ORDERS_BY_USER)
+    Single<OrderResponse> getOrderDeliveryByUser(@Query("user_id") String id, @Query("status") int status);
+
     @DELETE(EndPoint.ORDERS)
     Single<BaseResponse<Object>> cancelOrder(
             @Header("Authorization") String token,
@@ -82,7 +86,7 @@ public interface ApiService {
     @GET("orders/sold")
     Call<List<OrderSoldModel>> getOrdersSold();
 
-    @GET("orders/review")
+    @GET("reviews")
     Call<List<ReviewModel>> getReview();
 
     @POST("re-password")
@@ -94,5 +98,8 @@ public interface ApiService {
 
     @POST("order/update")
     Call<Void> sendOptionOrder(@Body OrderListPostModel orderListPostModel);
+
+    @POST("update")
+    Call<Void> updateProfile(@Body UserModel userModel);
 
 }

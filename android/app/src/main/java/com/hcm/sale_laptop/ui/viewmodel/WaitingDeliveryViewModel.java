@@ -10,6 +10,7 @@ import com.hcm.sale_laptop.data.model.other.OrderStateModel;
 import com.hcm.sale_laptop.data.repository.OrderRepository;
 import com.hcm.sale_laptop.utils.AppUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -29,8 +30,17 @@ public class WaitingDeliveryViewModel extends BaseViewModel<OrderRepository> {
         return orderData;
     }
 
+    public void getOrderDeliveryByUser(String id) {
+        final Disposable disposable = mRepository.getOrderDeliveryByUser(id)
+                .subscribeOn(Schedulers.io())
+                .doOnSubscribe(dis -> setLoading(true))
+                .doOnError(error -> setLoading(false))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::handlerOrderResponse, throwable -> setErrorMessage(throwable.getMessage()));
+        addDisposable(disposable);
+    }
     public void getOrderByUser(String id) {
-        final Disposable disposable = mRepository.getOrderByUser(id)
+        final Disposable disposable = mRepository.getOrderDeliveryByUser(id)
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(dis -> setLoading(true))
                 .doOnError(error -> setLoading(false))
@@ -44,11 +54,13 @@ public class WaitingDeliveryViewModel extends BaseViewModel<OrderRepository> {
         final OrderObject object = response.getData();
         if (!response.isSuccess() || object == null) {
             setErrorMessage("Lỗi load danh sách đơn hàng");
+            this.orderData.setValue(null);
         }
 
         final List<OrderStateModel> models = object != null ? object.getList() : null;
         if (!AppUtils.checkListHasData(models)) {
             setErrorMessage("Lỗi load danh sách đơn hàng");
+            this.orderData.setValue(null);
             return;
         }
 

@@ -15,7 +15,7 @@ import com.hcm.sale_laptop.data.enums.OrderStatus;
 import com.hcm.sale_laptop.data.model.other.OrderStateModel;
 import com.hcm.sale_laptop.databinding.DialogCancelOrderBinding;
 import com.hcm.sale_laptop.databinding.FragmentWaitPickupBinding;
-import com.hcm.sale_laptop.ui.adapter.OrderStateAdapter;
+import com.hcm.sale_laptop.ui.adapter.OrderStateDeliveryAdapter;
 import com.hcm.sale_laptop.ui.viewmodel.WaitingPickupViewModel;
 import com.hcm.sale_laptop.utils.AppUtils;
 import com.hcm.sale_laptop.utils.Constants;
@@ -39,7 +39,7 @@ public class WaitPickupFragment extends BaseFragment<WaitingPickupViewModel, Fra
 
     @Override
     protected void setupUI() {
-        final OrderStateAdapter adapter = new OrderStateAdapter(new ArrayList<>(), this, OrderStatus.AWAITING_DELIVERY, false);
+        final OrderStateDeliveryAdapter adapter = new OrderStateDeliveryAdapter(new ArrayList<>(), this, OrderStatus.AWAITING_DELIVERY, false);
         mBinding.recyclerView.setAdapter(adapter);
     }
 
@@ -64,7 +64,7 @@ public class WaitPickupFragment extends BaseFragment<WaitingPickupViewModel, Fra
         binding.btnExit.setActivated(true);
         binding.btnCancelOrder.setOnClickListener(v -> {
             final String reason = binding.etReason.getText().toString().trim();
-            final OrderStateAdapter adapter = (OrderStateAdapter) mBinding.recyclerView.getAdapter();
+            final OrderStateDeliveryAdapter adapter = (OrderStateDeliveryAdapter) mBinding.recyclerView.getAdapter();
             if (adapter != null) {
                 adapter.handlerRemoveItem(orderStateModel.getPosition());
                 orderStateModel = null;
@@ -94,7 +94,7 @@ public class WaitPickupFragment extends BaseFragment<WaitingPickupViewModel, Fra
         });
 
         mViewModel.getOrderData().observe(this, orderStateModels -> {
-            final OrderStateAdapter adapter = (OrderStateAdapter) mBinding.recyclerView.getAdapter();
+            final OrderStateDeliveryAdapter adapter = (OrderStateDeliveryAdapter) mBinding.recyclerView.getAdapter();
             if (adapter != null && AppUtils.checkListHasData(orderStateModels)) {
                 List<OrderStateModel> list = orderStateModels
                         .stream()

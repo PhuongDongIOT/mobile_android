@@ -46,7 +46,7 @@ public class WaitDeliveryFragment extends BaseFragment<WaitingDeliveryViewModel,
     protected void setupData() {
         mViewModel = new WaitingDeliveryViewModel();
 
-        mViewModel.getOrderByUser(Constants.getUserModel().getId());
+        mViewModel.getOrderDeliveryByUser(Constants.getUserModel().getId());
 
         mViewModel.errorMessage.observe(this, this::showToast);
 
